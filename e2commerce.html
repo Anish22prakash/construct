@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #a1ns{
+        border: 1px solid;
+        height: auto;
+        width: 10%;
+        }
+        #wid{
+            height: 50%;
+            width:100%;
+        }
+        #bigbox{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 5%;
+            justify-content: space-around;
+        }
+        p{
+            text-align: center;
+        }
+       h3{
+           text-align: center;
+       }
+       #a2ns{
+      display: flex;
+      justify-content: space-between;
+       }
+    </style>
+
+</head>
+<body>
+   <div id="bigbox">
+
+   </div>
+</body>
+</html>
+<script>
+     var arr=JSON.parse(localStorage.getItem("products"))
+    
+     arr.forEach(function(ele,index){
+         var chota=document.createElement("div")
+         chota.setAttribute("id","a1ns")
+
+         var img=document.createElement("img")
+         img.setAttribute("src",ele.image)
+         img.setAttribute("id","wid")
+
+         var naam=document.createElement("h3")
+         naam.innerText=ele.name
+
+         var pri=document.createElement("p")
+          pri.innerText=ele.price
+
+          var box=document.createElement("div")
+          box.setAttribute("id","a2ns")
+
+          var del=document.createElement("button")
+          del.innerText="delete"
+          del.addEventListener("click",function(){
+              delrow(ele,index)
+          })
+
+          var sold=document.createElement("button")
+          sold.innerText=ele.sold
+          sold.addEventListener("click",function(){
+              change(ele)
+          })
+
+          box.append(del,sold)
+         chota.append(img,naam,pri,box)
+          document.querySelector("#bigbox").append(chota)
+     });
+
+     function delrow(ele,index){
+      arr.splice(index,1)
+      localStorage.setItem("products",JSON.stringify(arr))
+      window.location.reload()
+     }
+     function change(ele){
+         if(ele.sold===true){
+            ele.sold.innerText="false"
+          
+            localStorage.setItem("products",JSON.stringify(arr))
+      window.location.reload()
+            
+         }
+         if(ele.sold===false){
+             ele.sold.innerText="true"
+             localStorage.setItem("products",JSON.stringify(arr))
+      window.location.reload()
+         }
+     }
+
+</script>
