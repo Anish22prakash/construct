@@ -68,8 +68,8 @@
 
           var sold=document.createElement("button")
           sold.innerText=ele.sold
-          sold.addEventListener("click",function(){
-              change(ele)
+          sold.addEventListener("click",function(e){
+              change(ele.sold,e)
           })
 
           box.append(del,sold)
@@ -82,18 +82,21 @@
       localStorage.setItem("products",JSON.stringify(arr))
       window.location.reload()
      }
-     function change(ele){
-         if(ele.sold===true){
-            ele.sold.innerText="false"
-          
-            localStorage.setItem("products",JSON.stringify(arr))
-      window.location.reload()
+
+     function change(ele,e){
+         if(ele===true){
+            ele="false"
+          e.target.style.background="red"
+            // localStorage.setItem("products",JSON.stringify(arr))
+            // window.location.reload()
             
          }
-         if(ele.sold===false){
-             ele.sold.innerText="true"
-             localStorage.setItem("products",JSON.stringify(arr))
-      window.location.reload()
+         if(ele===false){
+             ele="true"
+             e.target.style.background="blue"
+    //          localStorage.setItem("products",JSON.stringify(arr))
+    //   window.location.reload()
+
          }
      }
 

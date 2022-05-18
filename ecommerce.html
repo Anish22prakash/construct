@@ -14,11 +14,11 @@
         <input type="url" placeholder="image_url" id="image">
         <input type="number" placeholder="price" id="price">
         <input type="text" placeholder="gender" id="gender">
-        <select id="sold">
+        <!-- <select id="sold">
             <option value="false">false</option>
             <option value="true">true</option>
-        </select>
-        
+        </select> -->
+        <input type="checkbox" id="sold" >
         <input type="submit" id="add">
     </form>
 </body>
@@ -33,7 +33,7 @@
       var image=form.image.value
       var price=form.price.value
       var gender=form.gender.value
-      var sold=form.sold.value
+      var sold=form.sold.checked
 
       let p= new product(name,category,image,price,gender,sold)
       arr.push(p)
